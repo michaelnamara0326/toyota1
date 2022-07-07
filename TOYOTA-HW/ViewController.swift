@@ -33,6 +33,14 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let bannerView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "banner1")
+        view.layer.cornerRadius = 8.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let testButton:UIButton = {
         let btn = UIButton()
         let icon = UIImageView()
@@ -133,67 +141,7 @@ class ViewController: UIViewController {
         
         return stack
     }()
-//    let fnButtonUp: [UIButton] = {
-//        var btn:[UIButton] = []
-//        let icon = UIImageView()
-//        icon.translatesAutoresizingMaskIntoConstraints = false
-//        let titleLabel = UILabel()
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        let contentLabel = UILabel()
-//        contentLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        let titleLabelArr:[String] = ["速配車款","立即預選"]
-//        let contentLabelArr:[String] = ["輸入條件篩選", "預選下一台愛車"]
-//        let iconArr:[String] = ["icon_img_buycar", "icon_img_filterCars"]
-//        let bgArr:[String] = ["icon_img_background_left", "icon_img_background_right"]
-//
-//        for i in 0..<2{
-//            btn.append(UIButton())
-//            btn[i].widthAnchor.constraint(equalToConstant: 172).isActive = true
-//            btn[i].heightAnchor.constraint(equalToConstant: 64).isActive = true
-//
-//            btn[i].addSubview(icon)
-//            btn[i].addSubview(titleLabel)
-//            btn[i].addSubview(contentLabel)
-//
-//            icon.frame = CGRect(x: 16, y: 16, width: 32, height: 32)
-//            titleLabel.frame = CGRect(x: 60, y: 11, width: 56, height: 31)
-//            contentLabel.frame = CGRect(x: 60, y: 33, width: 72, height: 20)
-//
-//            btn[i].translatesAutoresizingMaskIntoConstraints = false
-//            btn[i].setImage(UIImage(named: bgArr[i]), for: .normal)
-//            icon.image = UIImage(named: iconArr[i])
-//            titleLabel.text = titleLabelArr[i]
-//            contentLabel.text = contentLabelArr[i]
-//        }
-//        return btn
-//    }()
-//    let fnButtonDown:[UIButton] = {
-//        var btn:[UIButton] = []
-//        for i in 0..<4{
-//            btn.append(UIButton())
-//        }
-//        return btn
-//    }()
-//    let stack:UIStackView = {
-//       let stack = UIStackView()
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//        stack.axis = .horizontal
-//        stack.distribution = .fillEqually
-//        stack.alignment = .center
-//        return stack
-//    }()
-//    let stack: [UIStackView] = {
-//        var stack:[UIStackView] = []
-//        for i in 0..<2{
-//            stack.append(UIStackView())
-//            stack[i].axis = .horizontal
-//            stack[i].distribution = .fillEqually
-//            stack[i].alignment = .fill
-//            stack[i].translatesAutoresizingMaskIntoConstraints = false
-//        }
-//        return stack
-//    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -205,7 +153,10 @@ class ViewController: UIViewController {
         stack.addArrangedSubview(testButton1[0])
         stack.addArrangedSubview(testButton1[1])
 //        stack.addArrangedSubview(testButton1)
-        view.addSubview(stack)
+        
+        
+        bottomView.addSubview(bannerView)
+        bottomView.addSubview(stack)
         
         setupHomepageLayout()
     }
@@ -235,8 +186,12 @@ class ViewController: UIViewController {
         bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
+        bannerView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 16).isActive = true
+        bannerView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16).isActive = true
+        bannerView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16).isActive = true
+        bannerView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        stack.topAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
+        stack.topAnchor.constraint(equalTo: bannerView.bottomAnchor, constant: 24).isActive = true
         stack.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 16).isActive = true
         stack.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -16).isActive = true
         stack.heightAnchor.constraint(equalToConstant: 64).isActive = true
